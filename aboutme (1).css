@@ -1,0 +1,818 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #FFF5F7 0%, #F0F8FF 50%, #FFF8E7 100%);
+    min-height: 100vh;
+    padding: 50px 20px;
+}
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #FFB3D9 0%, #B8E1F5 100%);
+    color: #333;
+    padding: 30px 40px;
+    box-shadow: 0 4px 15px rgba(255, 179, 217, 0.2);
+    position: relative;
+    z-index: 100;
+    border-radius: 20px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+nav h2 {
+    font-size: 42px;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+.nav-toggle {
+    display: none;
+}
+
+.menu-toggle {
+    display: none;
+    background: rgba(255, 255, 255, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    padding: 12px 16px;
+    font-size: 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle:hover {
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(1.15);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+}
+
+nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    padding: 14px 28px;
+    border-radius: 25px;
+    font-size: 17px;
+}
+
+nav a:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+}
+
+nav button {
+    background: rgba(255, 255, 255, 0.4) !important;
+    border: 2px solid rgba(255, 255, 255, 0.6) !important;
+    padding: 12px 20px !important;
+    font-size: 22px;
+    transition: all 0.3s ease !important;
+}
+
+nav button:hover {
+    background: rgba(255, 255, 255, 0.6) !important;
+    transform: rotate(20deg) scale(1.15) !important;
+}
+
+/* Container */
+.container {
+    width: 1000px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 70px;
+    border-radius: 30px;
+    box-shadow: 0 10px 40px rgba(255, 179, 217, 0.15);
+    border: 1px solid rgba(255, 179, 217, 0.2);
+    text-align: center;
+}
+
+/* Floating Professor Card */
+.floating-professor-card {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    background: linear-gradient(135deg, #FFB3D9 0%, #FFD0E8 100%);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(255, 179, 217, 0.3);
+    z-index: 1000;
+    max-width: 280px;
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    animation: float 3s ease-in-out infinite;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.floating-professor-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 50px rgba(255, 179, 217, 0.4);
+}
+
+.floating-professor-card.expanded {
+    max-width: 400px;
+    padding: 30px;
+    animation: none;
+    transform: scale(1);
+}
+
+.floating-professor-card.expanded:hover {
+    transform: scale(1);
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.professor-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.professor-image {
+    width: 100%;
+}
+
+.profile-img-professor {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 5px solid white;
+    box-shadow: 0 6px 20px rgba(255, 179, 217, 0.3);
+}
+
+.professor-info h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+    font-weight: 700;
+}
+
+.professor-title {
+    margin: 5px 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #555;
+}
+
+.professor-desc {
+    margin: 0;
+    font-size: 13px;
+    color: #666;
+    font-style: italic;
+}
+
+/* Professor Details (Hidden by default, shown when expanded) */
+.professor-details {
+    display: none;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.floating-professor-card.expanded .professor-details {
+    display: block;
+}
+
+.professor-bio {
+    margin: 0 0 15px 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+    font-weight: 500;
+}
+
+.professor-contact {
+    margin: 0;
+}
+
+.professor-contact p {
+    margin: 5px 0;
+    font-size: 13px;
+    color: #555;
+    font-weight: 600;
+}
+
+/* Team Heading */
+.team-heading {
+    font-size: 42px;
+    color: #C77DAA;
+    margin-bottom: 50px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Student Image Container */
+.student-image-container {
+    margin-bottom: 20px;
+}
+
+/* Student Description */
+.student-description {
+    background: linear-gradient(135deg, rgba(255, 179, 217, 0.1) 0%, rgba(184, 225, 245, 0.1) 100%);
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 15px;
+    border: 2px solid rgba(255, 179, 217, 0.2);
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.student-description p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555;
+    text-align: center;
+}
+
+/* Students Container */
+.students {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 60px;
+}
+
+.student {
+    flex: 1;
+    text-align: center;
+}
+
+.divider {
+    width: 4px;
+    background: linear-gradient(to bottom, #FFB3D9, #B8E1F5);
+    height: 350px;
+    border-radius: 2px;
+    margin: 0 30px;
+    box-shadow: 0 4px 15px rgba(255, 179, 217, 0.2);
+}
+
+/* Profile Image */
+.profile-img {
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    border: 8px solid #FFB3D9;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 25px rgba(255, 179, 217, 0.25);
+    transition: all 0.3s ease;
+    object-fit: cover;
+}
+
+.profile-img:hover {
+    transform: scale(1.08);
+    box-shadow: 0 12px 35px rgba(255, 179, 217, 0.35);
+}
+
+/* Headings */
+h1 {
+    margin-bottom: 35px;
+    color: #C77DAA;
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Text */
+p {
+    color: #555;
+    line-height: 2.2;
+    font-size: 19px;
+    margin: 40px 0;
+    font-weight: 500;
+}
+
+/* Profile Image */
+.profile-img {
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    border: 8px solid #FFB3D9;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 25px rgba(255, 179, 217, 0.25);
+    transition: all 0.3s ease;
+    object-fit: cover;
+}
+
+/* Passions Section */
+.info-section {
+    margin: 60px 0;
+    padding: 40px;
+    background: rgba(255, 179, 217, 0.08);
+    border-radius: 20px;
+    border: 2px solid rgba(255, 179, 217, 0.2);
+}
+
+.info-section h3,
+.achievements h3,
+.skills h3,
+.social h3 {
+    font-size: 28px;
+    color: #C77DAA;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.passion-cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.passion-card {
+    background: linear-gradient(135deg, #FFB3D9 0%, #FFD0E8 100%);
+    padding: 30px;
+    border-radius: 20px;
+    min-width: 180px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 179, 217, 0.2);
+    cursor: pointer;
+}
+
+.passion-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 12px 25px rgba(255, 179, 217, 0.35);
+}
+
+.passion-emoji {
+    font-size: 48px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.passion-card:hover .passion-emoji {
+    transform: rotate(15deg) scale(1.2);
+}
+
+.passion-card p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+}
+
+/* Skills */
+.skills {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 40px;
+    background: rgba(184, 225, 245, 0.08);
+    border-radius: 20px;
+    border: 2px solid rgba(184, 225, 245, 0.2);
+}
+
+.skill-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, #B8E1F5 0%, #D0E8FF 100%);
+    color: #333;
+    padding: 16px 32px;
+    margin: 14px;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(184, 225, 245, 0.3);
+    transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+    transform: translateY(-8px) scale(1.1);
+    box-shadow: 0 8px 20px rgba(184, 225, 245, 0.4);
+}
+
+/* Achievements */
+.achievements {
+    margin: 60px 0;
+    padding: 40px;
+    background: rgba(255, 220, 130, 0.08);
+    border-radius: 20px;
+    border: 2px solid rgba(255, 220, 130, 0.2);
+}
+
+.achievement-item {
+    background: linear-gradient(135deg, #FFE680 0%, #FFF0B3 100%);
+    padding: 20px 30px;
+    margin: 15px 0;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255, 220, 130, 0.2);
+}
+
+.achievement-item:hover {
+    transform: translateX(10px) scale(1.02);
+    box-shadow: 0 6px 18px rgba(255, 220, 130, 0.35);
+}
+
+/* Social Links */
+.social {
+    margin-top: 60px;
+    padding: 40px;
+    border: none;
+    background: rgba(255, 179, 217, 0.08);
+    border-radius: 20px;
+}
+
+.social h3 {
+    margin-bottom: 20px;
+}
+
+.social a {
+    display: inline-block;
+    margin: 20px;
+    color: #333;
+    font-size: 48px;
+    transition: all 0.3s ease;
+    padding: 20px;
+    border-radius: 50%;
+    background: rgba(255, 179, 217, 0.1);
+}
+
+.social a:hover {
+    background: linear-gradient(135deg, #FFB3D9 0%, #FFD0E8 100%);
+    transform: scale(1.35) translateY(-10px) rotate(10deg);
+    box-shadow: 0 12px 30px rgba(255, 179, 217, 0.35);
+}
+
+/* Dark Mode */
+.dark {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+}
+
+.dark body {
+    background: linear-gradient(135deg, #0f1a2e 0%, #0a1a2e 50%, #050a1a 100%);
+}
+
+.dark nav {
+    background: linear-gradient(90deg, #2a3f5f 0%, #1a3a5f 100%);
+    color: #e0e0e0;
+}
+
+.dark nav a,
+.dark nav h2 {
+    color: #e0e0e0;
+}
+
+.dark .menu-toggle {
+    color: #e0e0e0;
+}
+
+.dark .container {
+    background: #1f2a3f;
+    color: white;
+    border-color: #3a4a6f;
+}
+
+.dark h1 {
+    color: #FFB3D9;
+}
+
+.dark p {
+    color: #c0c0d0;
+}
+
+.dark .profile-img {
+    border-color: #FFB3D9;
+    box-shadow: 0 8px 25px rgba(255, 179, 217, 0.3);
+}
+
+.dark .skills span {
+    background: linear-gradient(135deg, #2a5f6f 0%, #1a4f5f 100%);
+    color: #e0e0e0;
+}
+
+.dark .skills span:hover {
+    background: linear-gradient(135deg, #4a8faf 0%, #3a7f9f 100%);
+}
+
+.dark .social {
+    border-top-color: #3a5a7f;
+}
+
+.dark .social a {
+    background: rgba(100, 130, 170, 0.2);
+    color: #e0e0e0;
+}
+
+.dark .social a:hover {
+    background: linear-gradient(135deg, #2a5f6f 0%, #1a4f5f 100%);
+    box-shadow: 0 8px 20px rgba(100, 130, 170, 0.3);
+}
+
+/* Dark Mode - New Elements */
+.dark .info-section {
+    background: rgba(100, 130, 170, 0.1);
+    border-color: rgba(100, 130, 170, 0.2);
+}
+
+.dark .passion-card {
+    background: linear-gradient(135deg, #2a5f7f 0%, #1a4f6f 100%);
+    color: #e0e0e0;
+}
+
+.dark .passion-card p {
+    color: #e0e0e0;
+}
+
+.dark .skills {
+    background: rgba(100, 150, 200, 0.1);
+    border-color: rgba(100, 150, 200, 0.2);
+}
+
+.dark .skill-tag {
+    background: linear-gradient(135deg, #1a5f9f 0%, #0a4f8f 100%);
+    color: #e0e0e0;
+}
+
+.dark .skill-tag:hover {
+    background: linear-gradient(135deg, #3a7faf 0%, #2a6f9f 100%);
+}
+
+.dark .achievements {
+    background: rgba(200, 150, 100, 0.1);
+    border-color: rgba(200, 150, 100, 0.2);
+}
+
+.dark .achievement-item {
+    background: linear-gradient(135deg, #4f3f1f 0%, #3f2f0f 100%);
+    color: #e0e0e0;
+}
+
+/* Dark Mode - Floating Professor Card */
+.dark .floating-professor-card {
+    background: linear-gradient(135deg, #2a5f7f 0%, #1a4f6f 100%);
+    border-color: rgba(100, 130, 170, 0.8);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.dark .professor-info h2,
+.dark .professor-title,
+.dark .professor-desc {
+    color: #e0e0e0;
+}
+
+.dark .professor-bio {
+    color: #c0c0d0;
+}
+
+.dark .professor-contact p {
+    color: #b0b0c0;
+}
+
+/* Dark Mode - Team Heading */
+.dark .team-heading {
+    color: #FFB3D9;
+}
+
+/* Dark Mode - Student Description */
+.dark .student-description {
+    background: rgba(100, 130, 170, 0.15);
+    border-color: rgba(100, 130, 170, 0.3);
+}
+
+.dark .student-description p {
+    color: #c0c0d0;
+}
+
+.dark .divider {
+    background: linear-gradient(to bottom, #FF99CF, #4a8faf);
+    box-shadow: 0 4px 15px rgba(100, 130, 170, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+    .nav-toggle {
+        display: flex;
+    }
+
+    .nav-menu {
+        flex-basis: 100%;
+        gap: 30px;
+        margin-top: 15px;
+        justify-content: center;
+        flex-wrap: wrap;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+    .nav-menu.active {
+        max-height: 300px;
+    }
+
+    .container {
+        width: 95%;
+        padding: 50px;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    nav h2 {
+        font-size: 28px;
+    }
+
+    h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    .profile-img {
+        width: 240px;
+        height: 240px;
+        margin-bottom: 30px;
+        object-fit: cover;
+    }
+
+    .students {
+        flex-wrap: wrap;
+    }
+
+    .divider {
+        display: none;
+    }
+}
+
+@media (max-width: 700px) {
+    .container {
+        width: 95%;
+        padding: 35px;
+    }
+
+    body {
+        padding: 30px 15px;
+    }
+
+    nav {
+        margin-bottom: 30px;
+        padding: 20px 25px;
+    }
+
+    nav h2 {
+        font-size: 22px;
+    }
+
+    .menu-toggle {
+        display: inline-block;
+    }
+
+    .nav-menu {
+        flex-basis: 100%;
+        gap: 15px;
+        margin-top: 15px;
+        justify-content: center;
+        flex-wrap: wrap;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+    .nav-menu.active {
+        max-height: 400px;
+    }
+
+    nav a {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    p {
+        font-size: 14px;
+        line-height: 1.8;
+        margin: 20px 0;
+    }
+
+    .profile-img {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 20px;
+        object-fit: cover;
+    }
+
+    .floating-professor-card {
+        bottom: 20px;
+        right: 20px;
+        max-width: 240px;
+        padding: 15px;
+    }
+
+    .profile-img-professor {
+        width: 110px;
+        height: 110px;
+    }
+
+    .skills {
+        margin-top: 35px;
+        margin-bottom: 35px;
+    }
+
+    .skills span {
+        padding: 10px 18px;
+        margin: 7px;
+        font-size: 13px;
+    }
+
+    .social {
+        margin-top: 35px;
+        padding-top: 30px;
+    }
+
+    .social a {
+        margin: 10px;
+        font-size: 24px;
+        padding: 12px;
+    }
+
+    .floating-professor-card {
+        bottom: 15px;
+        right: 15px;
+        max-width: 200px;
+        padding: 12px;
+    }
+
+    .floating-professor-card.expanded {
+        max-width: 90vw;
+        padding: 20px;
+        bottom: 10px;
+        right: 10px;
+        left: 10px;
+    }
+
+    .profile-img-professor {
+        width: 90px;
+        height: 90px;
+    }
+
+    .professor-info h2 {
+        font-size: 16px;
+    }
+
+    .professor-title {
+        font-size: 12px;
+    }
+
+    .professor-desc {
+        font-size: 11px;
+    }
+
+    .team-heading {
+        font-size: 32px;
+    }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #FFF5F7;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #FFB3D9;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #FF99CF;
+}
