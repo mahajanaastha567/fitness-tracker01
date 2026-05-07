@@ -13,18 +13,58 @@
     <div class="nav-toggle">
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     </div>
-    <div class="nav-menu">
+    <div class="nav-menu" id="navMenu">
         <a href="index.html">🏠 Home</a>
-        <a href="about.html">👤 About Us</a>
+        <a href="#aboutus">👤 About Us</a>
         <button onclick="toggleTheme()">🌙</button>
     </div>
 </nav>
+
+<!-- Professor Card -->
+<div class="floating-professor-card" onclick="toggleProfessorCard()">
+
+    <div class="professor-content">
+
+        <div class="professor-image">
+            <img 
+                id="drAbhishekImg"
+                src="Abhishek (Logo) - 1.png"
+                alt="Dr. Abhishek"
+                class="profile-img-professor"
+            >
+        </div>
+
+        <div class="professor-info">
+            <h2>Dr. Abhishek</h2>
+            <p class="professor-title">📚 Associate Professor</p>
+            <p class="professor-desc">Guide & Mentor</p>
+        </div>
+
+        <div class="professor-details">
+            <p class="professor-bio">
+                Dr. Abhishek is a dedicated Associate Professor with expertise
+                in web development and software engineering. He has been
+                instrumental in guiding this fitness tracker project,
+                providing valuable insights and mentorship to ensure
+                innovative solutions and high-quality work.
+                linkedIn: <a href="https://www.linkedin.com/in/dr-abhishek-thakur-00123321?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank">Dr. Abhishek's LinkedIn</a>
+            </p>
+
+            <div class="professor-contact">
+                <p>🎓 Department of Computer Science</p>
+            
+            </div>
+        </div>
+
+    </div>
+</div>
 
 <!-- Feature Menu Bar -->
 <div class="feature-menu">
     <a href="#weight">⚖️ Weight</a>
     <a href="#mealplanner">📅 Meal Plan</a>
     <a href="#workout">🏋️ Workout</a>
+    <a href="#aboutus">👤 About Us</a>
 </div>
 
 <div class="container">
@@ -79,9 +119,234 @@
 
     <div id="workoutRecommendation" class="summary-box"></div>
 
+    <!-- About Us Section -->
+    <h3 id="aboutus">👤 About Us</h3>
+
+    <div class="students">
+
+        <!-- Anamika -->
+        <div class="student">
+
+            <div class="student-image-container">
+                <img
+                    id="anamikaImg"
+                    src="anamika image.jpeg"
+                    alt="Anamika"
+                    class="profile-img"
+                >
+            </div>
+
+            <h1>✨ Anamika ✨</h1>
+
+            <div class="student-description">
+                <p id="anamikaDesc">
+                    Anamika is an enthusiastic team member who brings creativity
+                    and strong problem-solving skills to enhance both the design
+                    and functionality of this project. She consistently contributes
+                    innovative ideas, pays attention to detail, and ensures that
+                    the user experience remains engaging and effective.
+                    linkedIn: <a href="https://www.linkedin.com/in/anamika-singh-a2889935a?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank">Anamika's LinkedIn</a>
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Divider -->
+        <div class="divider"></div>
+
+        <!-- Aastha -->
+        <div class="student">
+
+            <div class="student-image-container">
+                <img
+                    id="aasthaImg"
+                    src="aastha image .jpeg"
+                    alt="Aastha"
+                    class="profile-img"
+                >
+            </div>
+
+            <h1>✨ Aastha ✨</h1>
+
+            <div class="student-description">
+                <p id="aasthaDesc">
+                    Aastha is a dedicated team member contributing to the web
+                    development and fitness aspects of this project. She
+                    demonstrates strong technical skills, a passion for healthy
+                    living, and a commitment to delivering a well-structured
+                    and impactful solution through teamwork and consistency.
+                    linkedIn: <a href="" target="_blank">Aastha's LinkedIn</a>
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Passion Section -->
+    <div class="info-section">
+
+        <h3>💪 Our Passion</h3>
+
+        <div class="passion-cards">
+
+            <div class="passion-card">
+                <div class="passion-emoji">💻</div>
+                <p>Web Development</p>
+            </div>
+
+            <div class="passion-card">
+                <div class="passion-emoji">🏃</div>
+                <p>Fitness Journey</p>
+            </div>
+
+            <div class="passion-card">
+                <div class="passion-emoji">🚀</div>
+                <p>Learning & Growing</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Skills -->
+    <div class="skills">
+
+        <h3>🛠️ Skills</h3>
+
+        <span class="skill-tag">HTML</span>
+        <span class="skill-tag">CSS</span>
+        <span class="skill-tag">JavaScript</span>
+
+    </div>
+
+    <!-- Goals -->
+    <div class="achievements">
+
+        <h3>🎯 Goals</h3>
+
+        <div class="achievement-item">📱 Build amazing web apps</div>
+        <div class="achievement-item">🏆 Help others get fit</div>
+        <div class="achievement-item">📚 Keep learning & innovating</div>
+
     </div>
 
 </div>
+
+<!-- JavaScript -->
+<script>
+
+    // Toggle Dark Theme
+    function toggleTheme() {
+        document.body.classList.toggle('dark');
+
+        if (document.body.classList.contains('dark')) {
+            localStorage.setItem('theme', 'dark');
+        } else {
+            localStorage.setItem('theme', 'light');
+        }
+    }
+
+    // Toggle Mobile Menu
+    function toggleMenu() {
+        const navMenu = document.getElementById('navMenu');
+        navMenu.classList.toggle('active');
+    }
+
+    // Toggle Professor Card
+    function toggleProfessorCard() {
+        const card = document.querySelector('.floating-professor-card');
+        card.classList.toggle('expanded');
+    }
+
+    // Load Content
+    function loadTeamContent() {
+
+        const anamikaImg = localStorage.getItem('anamikaImage');
+        const aasthaImg = localStorage.getItem('aasthaImage');
+        const drAbhishekImg = localStorage.getItem('drAbhishekImage');
+
+        const anamikaDesc = localStorage.getItem('anamikaDesc');
+        const aasthaDesc = localStorage.getItem('aasthaDesc');
+
+        // Set Images
+        if (anamikaImg) {
+            document.getElementById('anamikaImg').src = anamikaImg;
+        }
+
+        if (aasthaImg) {
+            document.getElementById('aasthaImg').src = aasthaImg;
+        }
+
+        if (drAbhishekImg) {
+            document.getElementById('drAbhishekImg').src = drAbhishekImg;
+        }
+
+        // Set Descriptions
+        if (anamikaDesc) {
+            document.getElementById('anamikaDesc').textContent = anamikaDesc;
+        }
+
+        if (aasthaDesc) {
+            document.getElementById('aasthaDesc').textContent = aasthaDesc;
+        }
+    }
+
+    // Set Team Content
+    function setTeamContent(
+        anamika,
+        aastha,
+        abhishek,
+        anamikaDescText,
+        aasthaDescText
+    ) {
+
+        if (anamika) {
+            document.getElementById('anamikaImg').src = anamika;
+            localStorage.setItem('anamikaImage', anamika);
+        }
+
+        if (aastha) {
+            document.getElementById('aasthaImg').src = aastha;
+            localStorage.setItem('aasthaImage', aastha);
+        }
+
+        if (abhishek) {
+            document.getElementById('drAbhishekImg').src = abhishek;
+            localStorage.setItem('drAbhishekImage', abhishek);
+        }
+
+        if (anamikaDescText) {
+            document.getElementById('anamikaDesc').textContent = anamikaDescText;
+            localStorage.setItem('anamikaDesc', anamikaDescText);
+        }
+
+        if (aasthaDescText) {
+            document.getElementById('aasthaDesc').textContent = aasthaDescText;
+            localStorage.setItem('aasthaDesc', aasthaDescText);
+        }
+    }
+
+    // DOM Loaded
+    document.addEventListener('DOMContentLoaded', function () {
+
+        loadTeamContent();
+
+        const navLinks = document.querySelectorAll('.nav-menu a');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                document.getElementById('navMenu').classList.remove('active');
+            });
+        });
+
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark');
+        }
+    });
+
+</script>
 
 <script src="pro.js"></script>
 </body>
